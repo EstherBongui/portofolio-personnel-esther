@@ -1,12 +1,15 @@
 {
   "name": "portofolio-personnel-esther",
   "version": "0.1.0",
-  "description": "",
+  "description": "Portfolio personnel d'Esther Bongui - Étudiante en informatique UQAR",
   "license": "MIT",
+  "homepage": "https://estherbongui.github.io/portofolio-personnel-esther",
   "scripts": {
     "start": "vite",
     "preview": "vite preview",
-    "build": "vite build"
+    "build": "vite build",
+    "deploy": "npm run build && gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -16,6 +19,7 @@
     "@tailwindcss/postcss": "^4.1.14",
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.21",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.14",
     "vite": "^6.2.0"
