@@ -9,7 +9,7 @@ const Hero = () => {
           <div className="flex justify-center mb-8">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-2xl border-4 border-primary/30">
               <img 
-                src="/src/multi-media/esther_profil.png" 
+                  src="/portofolio-personnel-esther/src/multi-media/esther_profil.png"
                 alt="Esther Bongui" 
                 className="w-full h-full object-cover"
               />

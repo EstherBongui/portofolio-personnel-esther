@@ -27,7 +27,7 @@ const Projects = () => {
             frontend: 'https://github.com/EstherBongui/AnatOasis_FrontEnd_Project.git',
             backend: 'https://github.com/EstherBongui/AnatomyOasis_Projet.git'
           },
-          demo: '/src/multi-media/Video_AnatOasis.mkv',
+          demo: '/portofolio-personnel-esther/src/multi-media/Video_AnatOasis.mkv',
     },
     {
       id: 2,
