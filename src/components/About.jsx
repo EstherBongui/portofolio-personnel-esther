@@ -13,7 +13,7 @@ const About = () => {
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-gradient-to-br from-primary to-secondary transform rotate-6"></div>
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden absolute top-0 left-0 shadow-lg border-4 border-white">
                 <img 
-                  src="/portofolio-personnel-esther/src/multi-media/about_me.jpeg" 
+                  src="/portofolio-personnel-esther/multi-media/about_me.jpeg" 
                   alt="Esther Bongui - À propos" 
                   className="w-full h-full object-cover"
                 />
