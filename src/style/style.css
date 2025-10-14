@@ -89,12 +89,9 @@ html {
     right: 0;
     z-index: 50;
     transition: all 0.3s;
-    background-color: transparent;
-  }
-  
-  .header-nav.scrolled {
-    background-color: white;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    background-color: #FEF7ED;
+    box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.1);
+    border-bottom: 1px solid rgba(255, 20, 147, 0.2);
   }
   
   /* Hero personnalisé */

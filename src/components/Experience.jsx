@@ -156,8 +156,8 @@ const Experience = () => {
           <div className="flex flex-wrap justify-center gap-4">
             {[
               { lang: 'Français', level: 'Langue maternelle' },
-              { lang: 'Anglais', level: 'Courant' },
-              { lang: 'Italien', level: 'Intermédiaire' }
+              { lang: 'Anglais', level: 'Intermédiaire' },
+              { lang: 'Italien', level: 'Débutant' }
             ].map((lang, index) => (
               <div key={index} className="px-6 py-3 bg-white rounded-lg shadow-md">
                 <div className="font-semibold text-dark">{lang.lang}</div>
