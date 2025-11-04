@@ -18,18 +18,18 @@ const Hero = () => {
 
           {/* Introduction */}
           <h1 className="text-5xl md:text-7xl font-bold text-dark">
-            Bonjour, je suis <span className="text-primary">Esther</span>
+            <span className="text-primary">Esther Bongui</span>
           </h1>
           
-          <h2 className="text-2xl md:text-4xl text-gray-600 font-light">
-            Étudiante en Informatique & Développeuse Web
-          </h2>
-          
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-            Étudiante motivée et rigoureuse en informatique à l'UQAR, je développe des applications web
-            modernes avec C#, React, et les technologies .NET. Curieuse et adaptable, je recherche
-            un stage pour mettre à profit mes compétences techniques.
-          </p>
+              <h2 className="text-2xl md:text-4xl text-gray-600 font-light">
+                Développeuse Web & Passionnée d'Informatique
+              </h2>
+
+              <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+                Actuellement en formation à l'UQAR, je développe des solutions logicielles complètes
+                avec C#, React, et les technologies .NET. Animée par la curiosité et l'envie d'apprendre,
+                je recherche un stage ou un emploi pour élargir mes compétences et contribuer à des projets stimulants.
+              </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">

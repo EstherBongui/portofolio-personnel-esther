@@ -1,44 +1,46 @@
 import React from 'react';
 
 const Skills = () => {
-  const skillCategories = [
-    {
-      title: 'Langages de Programmation',
-      icon: '💻',
-      skills: [
-        { name: 'C#', level: 90 },
-        { name: 'JavaScript', level: 85 },
-        { name: 'Python', level: 80 },
-        { name: 'Java', level: 75 },
-        { name: 'PHP', level: 70 },
-        { name: 'HTML/CSS', level: 95 },
-      ],
-    },
-    {
-      title: 'Frameworks & Technologies',
-      icon: '⚙️',
-      skills: [
-        { name: 'ASP.NET', level: 90 },
-        { name: 'React', level: 85 },
-        { name: 'Django', level: 80 },
-        { name: 'Entity Framework', level: 85 },
-        { name: 'Tailwind CSS', level: 88 },
-        { name: 'Bootstrap', level: 75 },
-      ],
-    },
-    {
-      title: 'Outils & Bases de Données',
-      icon: '🛠️',
-      skills: [
-        { name: 'Visual Studio', level: 90 },
-        { name: 'Git & GitHub', level: 85 },
-        { name: 'SQL Server', level: 80 },
-        { name: 'MySQL', level: 75 },
-        { name: 'Linux', level: 70 },
-        { name: 'Azure', level: 65 },
-      ],
-    },
-  ];
+      const skillCategories = [
+        {
+          title: 'Langages de Programmation',
+          icon: '💻',
+          skills: [
+            { name: 'C#', level: 95 },
+            { name: 'JavaScript', level: 75 },
+            { name: 'Python', level: 15 },
+            { name: 'Java', level: 10 },
+            { name: 'PHP', level: 10 },
+            { name: 'HTML/CSS', level: 100 },
+          ],
+        },
+        {
+          title: 'Frameworks & Technologies',
+          icon: '⚙️',
+          skills: [
+            { name: 'ASP.NET', level: 80 },
+            { name: 'React', level: 90 },
+            { name: 'Django', level: 40 },
+            { name: 'Entity Framework', level: 95 },
+            { name: 'Tailwind CSS', level: 30 },
+            { name: 'Bootstrap', level: 95 },
+          ],
+        },
+        {
+          title: 'Outils & Bases de Données',
+          icon: '🛠️',
+          skills: [
+            { name: 'Visual Studio', level: 95 },
+            { name: 'VS Code', level: 95 },
+            { name: 'Postman', level: 70 },
+            { name: 'Git & GitHub', level: 50 },
+            { name: 'SQL Server', level: 40 },
+            { name: 'MySQL', level: 65 },
+            { name: 'Linux', level: 10 },
+            { name: 'Azure', level: 10 },
+          ],
+        },
+      ];
 
   return (
     <section id="skills" className="bg-light">
@@ -58,20 +60,14 @@ const Skills = () => {
                 <h3 className="text-2xl font-bold text-dark">{category.title}</h3>
               </div>
 
-              <div className="space-y-4">
+              <div className="flex flex-wrap gap-3 justify-center">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-600 font-medium">{skill.name}</span>
-                      <span className="text-primary font-semibold">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2.5">
-                      <div
-                        className="bg-gradient-to-r from-primary to-secondary h-2.5 rounded-full transition-all duration-1000"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                  </div>
+                  <span
+                    key={skillIndex}
+                    className="px-4 py-2 bg-white text-gray-600 rounded-full shadow-md hover:shadow-lg transition duration-300 hover:scale-105 border border-primary/20"
+                  >
+                    {skill.name}
+                  </span>
                 ))}
               </div>
             </div>

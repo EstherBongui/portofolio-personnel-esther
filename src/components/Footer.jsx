@@ -49,11 +49,11 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4 text-white">Esther Bongui</h3>
             <p className="text-gray-100 mb-4">
-              Étudiante en informatique à l'UQAR, spécialisée en développement web avec C#,
+              Développeuse en formation à l'UQAR, compétente en C#,
               ASP.NET, React et architectures microservices.
             </p>
             <p className="text-gray-100 text-sm">
-              Recherche un stage pour mettre à profit mes compétences techniques et développer mon autonomie.
+              Recherche un stage ou un emploi pour explorer de nouvelles technologies et contribuer à des projets innovants.
             </p>
           </div>
 

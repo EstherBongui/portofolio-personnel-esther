@@ -24,15 +24,17 @@ const About = () => {
           {/* Description */}
           <div className="space-y-6">
             <p className="text-lg text-gray-600 leading-relaxed">
-              Étudiante en informatique à l'Université du Québec à Rimouski (UQAR), je suis passionnée
-              par le développement d'applications web modernes. Mon parcours académique m'a permis
-              d'acquérir une solide expertise en C#, React, ASP.NET et les architectures microservices.
+              Toujours en quête d'évolution, je considère chaque projet comme une occasion d'apprendre, 
+              de me dépasser et de grandir, tant sur le plan professionnel que personnel. Curieuse, 
+              rigoureuse et investie, j'aime découvrir de nouvelles technologies et m'impliquer dans 
+              des projets collaboratifs où l'innovation et la qualité se rencontrent.
             </p>
             
             <p className="text-lg text-gray-600 leading-relaxed">
-              Curieuse, adaptable et dotée d'un bon esprit d'équipe, je souhaite contribuer à des projets
-              concrets dans un environnement collaboratif et stimulant. Je recherche un stage qui me
-              permettra de mettre à profit mes compétences techniques tout en développant mon autonomie.
+              Je crois profondément que chaque défi est une opportunité de progression et que la 
+              collaboration est la clé pour transformer une idée en réussite concrète. Mon objectif 
+              est de continuer à évoluer, d'acquérir de nouvelles compétences et de contribuer à des 
+              projets qui ont un impact réel et durable.
             </p>
 
             <div className="grid grid-cols-2 gap-6 pt-6">

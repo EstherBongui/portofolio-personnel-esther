@@ -36,7 +36,7 @@ const Projects = () => {
       image: '🛒',
       category: 'E-Commerce',
       technologies: ['ASP.NET', 'C#', 'Entity Framework', 'Bootstrap', 'Stripe', 'Razor'],
-      github: 'not-available',
+      github: 'https://github.com/EstherBongui/E-Vente_ASP.NET_Interface.git',
       demo: 'not-available',
     },
     {
@@ -46,7 +46,7 @@ const Projects = () => {
       image: '⚙️',
       category: 'Backend',
       technologies: ['ASP.NET Web API', 'C#', 'Ocelot', 'JWT', 'Azure', 'Entity Framework'],
-      github: 'not-available',
+      github: 'https://github.com/EstherBongui/EVente_MicroServices.git',
       demo: 'not-available',
     },
     {
@@ -56,7 +56,7 @@ const Projects = () => {
       image: '🚗',
       category: 'Gestion',
       technologies: ['Django', 'React', 'MySQL', 'JWT', 'Swagger', 'SQLite'],
-      github: 'not-available',
+      github: 'https://github.com/EstherBongui/Gestion-de-Rendez-vous-Automobil.git',
       demo: 'not-available',
     },
     {
@@ -66,7 +66,7 @@ const Projects = () => {
       image: '♟️',
       category: 'Jeu',
       technologies: ['C#', 'Logique de Jeu'],
-      github: 'not-available',
+      github: 'https://github.com/EstherBongui/Jeu-d-chec.git',
       demo: 'not-available',
     },
     {
@@ -76,7 +76,7 @@ const Projects = () => {
       image: '⭕',
       category: 'Jeu Web',
       technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
-      github: 'not-available',
+      github: 'https://github.com/EstherBongui/Tic-Tac-Toe-Web.git',
       demo: 'not-available',
     },
   ];
