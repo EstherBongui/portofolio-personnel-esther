@@ -18,10 +18,40 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Application Web d\'Apprentissage de l\'Anatomie',
-      description: 'Conception d’une application web interactive pour l’apprentissage de l’anatomie humaine, permettant aux utilisateurs d’explorer les organes, muscles et os à travers des images cliquables et des quiz. Le projet combine un back-end en C# avec ASP.NET en architecture microservices (Ocelot, Swagger, JWT) et un front-end en React avec Redux Toolkit, Axios et Tailwind CSS. L’application inclut une gestion des utilisateurs (participants et administrateurs), un suivi des apprentissages et un système de quiz générés aléatoirement. Le tout est versionné avec Git et hébergé sur GitHub pour assurer la traçabilité et la collaboration.',
-      image: '🫀',
+      title: 'Plateforme Web de Réservation de Cinéma',
+      description: 'Développement d\'une plateforme web transactionnelle de réservation de cinéma en suivant les pratiques Agile (Scrum). Le projet inclut l\'analyse et la conception d\'une Solution Viable Minimale (MVS), un catalogue de films, une authentification sécurisée avec JWT, un système de réservation de sièges et un paiement en ligne. Mise en œuvre des pratiques Agile avec user stories, sprints, CI/CD, tests unitaires, documentation API (Swagger) et intégration Frontend/Backend complète.',
+      image: '🎬',
       category: 'Web App',
+      technologies: ['C#', 'ASP.NET', 'React', 'JWT', 'Swagger', 'CI/CD', 'Agile/Scrum', 'Tests unitaires'],
+      github: 'not-available',
+      demo: 'not-available',
+    },
+    {
+      id: 2,
+      title: 'Développement d\'un Système ERP/PGI - Nordik Adventures',
+      description: 'Développement d\'un système ERP/PGI desktop (WPF .NET 8.0) pour Nordik Adventures avec modélisation de base de données MySQL. Modules implémentés : gestion des stocks (produits, catégories, fournisseurs, mouvements d\'inventaire), facturation (génération de factures avec calcul automatique TPS/TVQ, paiements), comptabilité (journal comptable en partie double), achats fournisseurs, ventes et commandes clients, et CRM (gestion des clients, interactions, campagnes marketing). L\'application inclut un système d\'authentification avec gestion des rôles, des tableaux de bord interactifs, une interface client pour les achats avec panier, et l\'implémentation des règles métier transactionnelles. Le projet démontre une compréhension de l\'architecture d\'applications ERP, de la modélisation relationnelle et de la comptabilité de base.',
+      image: '📊',
+      category: 'Web App',
+      technologies: ['C#', 'WPF .NET 8.0', 'MySQL', 'Entity Framework', 'MVVM'],
+      github: 'not-available',
+      demo: 'not-available',
+    },
+    {
+      id: 9,
+      title: 'Plateforme Web de Déclaration de Revenus (Revenu Québec simulé)',
+      description: 'Développement d\'une application Web permettant aux contribuables de produire et soumettre leur déclaration de revenus en ligne. L\'application comprend un Front End en React structuré selon le modèle MVVM, et un Back End en .NET basé sur une Clean Architecture organisée en couches. Le système permet l\'inscription et l\'authentification sécurisée des utilisateurs, la saisie et l\'envoi des déclarations de revenus, le suivi de leur traitement et le téléchargement des avis de cotisation. Le Back End repose sur une base de données SQL Server avec Entity Framework Core, intègre des règles de validation, des services simulés gouvernementaux et un tableau de bord administratif pour la gestion des déclarations. L\'ensemble communique via une API REST sécurisée, assurant une interaction complète entre le front end et le back end.',
+      image: '📋',
+      category: 'Web App',
+      technologies: ['React', '.NET', 'SQL Server', 'Entity Framework Core', 'API REST', 'Clean Architecture', 'MVVM'],
+      github: 'not-available',
+      demo: 'not-available',
+    },
+    {
+      id: 3,
+      title: 'Application Web d\'Apprentissage de l\'Anatomie',
+      description: 'Conception d’une application web interactive pour l’apprentissage de l’anatomie humaine, permettant aux utilisateurs d’explorer les organes, muscles et os à travers des images cliquables et des quiz. Le projet combine un back-end en C# avec ASP.NET en architecture microservices (Ocelot, Swagger, JWT) et un front-end en React avec Redux Toolkit, Axios et Tailwind CSS. L’application inclut une gestion des utilisateurs (participants et administrateurs), un suivi des apprentissages et un système de quiz générés aléatoirement.',
+      image: '🫀',
+      category: 'Jeu Web',
       technologies: ['C#', 'ASP.NET', 'React', 'Redux Toolkit', 'Ocelot', 'JWT', 'Swagger'],
           github: {
             frontend: 'https://github.com/EstherBongui/AnatOasis_FrontEnd_Project.git',
@@ -30,9 +60,9 @@ const Projects = () => {
           demo: 'not-available',
     },
     {
-      id: 2,
+      id: 4,
       title: 'Boutique en Ligne ASP.NET',
-      description: 'Développement d’une application web complète de e-commerce avec ASP.NET et C#, intégrant une interface utilisateur responsive conçue avec Bootstrap et Razor. Le projet permettait l’inscription et l’authentification des clients et vendeurs, la gestion des, produits, des paniers et des factures, ainsi que le traitement des paiements électroniques, via Stripe. L’application exploitait des API REST publiques (FakeStore API, DummyJSON), pour la génération de données factices et utilisait Entity Framework Core pour la persistance des données. L’ensemble du projet a été versionné avec Git et hébergé sur GitHub pour le travail collaboratif.',
+      description: 'Développement d’une application web complète de e-commerce avec ASP.NET et C#, intégrant une interface utilisateur responsive conçue avec Bootstrap et Razor. Le projet permettait l’inscription et l’authentification des clients et vendeurs, la gestion des, produits, des paniers et des factures, ainsi que le traitement des paiements électroniques, via Stripe. L’application exploitait des API REST publiques (DummyJSON), pour la génération de données factices et utilisait Entity Framework Core pour la persistance des données.',
       image: '🛒',
       category: 'E-Commerce',
       technologies: ['ASP.NET', 'C#', 'Entity Framework', 'Bootstrap', 'Stripe', 'Razor'],
@@ -40,7 +70,7 @@ const Projects = () => {
       demo: 'not-available',
     },
     {
-      id: 3,
+      id: 5,
       title: 'Architecture Microservices E-Commerce',
       description: 'Conception et développement du back-end d’une plateforme de commerce électronique selon une architecture en microservices, avec ASP.NET Web API et C#. Le projet incluait la création de plusieurs services indépendants (produits, utilisateurs, commandes, panier, paiement) interconnectés via une passerelle Ocelot. Il comportait une authentification sécurisée par jeton JWT, une documentation unifiée avec Swagger et une intégration du paiement électronique Stripe. Chaque service utilisait sa propre base de données gérée avec Entity Framework Core, et le système a été déployé sur Microsoft Azure avec gestion de version Git/GitHub pour le suivi et la collaboration.',
       image: '⚙️',
@@ -50,17 +80,17 @@ const Projects = () => {
       demo: 'not-available',
     },
     {
-      id: 4,
+      id: 6,
       title: 'Gestion de Rendez-vous Automobile',
       description: 'Conception d’une application web complète combinant Django (backend) et React (frontend) pour la gestion des rendez-vous, des véhicules et des paiements dans un garage automobile. Le projet intégrait une authentification par jeton avec expiration et des permissions basées sur les rôles (client, mécanicien). L’ORM de Django a été configuré avec SQLite, puis migré vers MySQL, et une interface d’administration a été mise en place. L’API REST a été documentée avec Swagger, incluant les méthodes HTTP (GET, POST, DELETE, PUT) et testée pour la sécurité et la gestion des accès. L’application permettait une interaction fluide entre le client et le personnel via une interface réactive et intuitive.',
       image: '🚗',
-      category: 'Gestion',
+      category: 'Web App',
       technologies: ['Django', 'React', 'MySQL', 'JWT', 'Swagger', 'SQLite'],
       github: 'https://github.com/EstherBongui/Gestion-de-Rendez-vous-Automobil.git',
       demo: 'not-available',
     },
     {
-      id: 5,
+      id: 7,
       title: 'Jeu d\'Échecs en C#',
       description: 'Développement complet d’un jeu d’échecs avec interface utilisateur interactive en C#. Le projet consistait à concevoir une interface permettant au joueur d’entrer ses coups, à valider les déplacements selon les règles officielles, à gérer les interactions entre les pièces, ainsi qu’à détecter les situations d’échec, d’échec et mat et de pat. Le programme enregistre également les parties jouées et conserve la liste des coups de chaque joueur.',
       image: '♟️',
@@ -70,7 +100,7 @@ const Projects = () => {
       demo: 'not-available',
     },
     {
-      id: 6,
+      id: 8,
       title: 'Tic-Tac-Toe Web',
       description: 'Création d’une application web de type jeu interactif où l’utilisateur peut choisir son niveau de difficulté, entrer ses informations et jouer contre l’ordinateur. Le projet incluait la conception de plusieurs pages web, la gestion dynamique du plateau de jeu, la détection automatique des alignements gagnants et l’affichage des résultats. L’application permet également de consulter l’historique des parties et de recommencer une nouvelle partie à la fin du jeu.',
       image: '⭕',
@@ -81,7 +111,7 @@ const Projects = () => {
     },
   ];
 
-  const categories = ['Tous', 'Web App', 'E-Commerce', 'Backend', 'Gestion', 'Jeu', 'Jeu Web'];
+  const categories = ['Tous', 'Web App', 'E-Commerce', 'Backend', 'Jeu', 'Jeu Web'];
 
   const filteredProjects = filter === 'Tous' 
     ? projects 
@@ -105,8 +135,8 @@ const Projects = () => {
               onClick={() => setFilter(category)}
               className={`px-6 py-2 rounded-full font-medium transition duration-300 ${
                 filter === category
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-primary text-dark shadow-lg'
+                  : 'bg-light/80 text-dark border border-gray-300/50 hover:bg-light hover:border-gray-400/60'
               }`}
             >
               {category}

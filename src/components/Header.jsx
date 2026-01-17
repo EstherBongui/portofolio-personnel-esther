@@ -18,7 +18,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#home" className="text-2xl md:text-3xl font-bold text-primary">
+            <a href="#home" className="text-2xl md:text-3xl font-bold text-primary font-heading">
               Portfolio
             </a>
           </div>
@@ -29,7 +29,7 @@ const Header = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-gray-600 hover:text-primary font-medium transition duration-300"
+                className="text-gray-600 hover:text-primary font-medium transition duration-300 font-heading"
               >
                 {link.name}
               </a>
@@ -68,7 +68,7 @@ const Header = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="block py-2 text-gray-600 hover:text-primary font-medium transition duration-300"
+                className="block py-2 text-gray-600 hover:text-primary font-medium transition duration-300 font-heading"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}

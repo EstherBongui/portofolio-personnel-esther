@@ -133,7 +133,7 @@ const Experience = () => {
 
         {/* Formation */}
         <div>
-          <h3 className="text-3xl font-bold text-center mb-8 text-dark">Formation</h3>
+          <h3 className="text-3xl font-bold text-center mb-8 text-dark">Formations</h3>
           <div className="grid md:grid-cols-2 gap-8">
             {formations.map((formation) => (
               <div key={formation.id} className="card">

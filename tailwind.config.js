@@ -7,16 +7,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#FF1493',        /* Rose fuchsia pour les accents */
-        secondary: '#FF1493',      /* Même rose pour la cohérence */
-        dark: '#1E3A8A',           /* Bleu foncé pour les textes */
-        light: '#FEF7ED',          /* Fond crème/beige */
+        primary: '#5D0D18',        /* Bloodstone pour les accents */
+        secondary: '#9FB2AC',      /* Misty Sage pour les secondaires */
+        dark: '#5D0D18',           /* Bloodstone pour les textes */
+        light: '#FFF9EB',          /* Vanilla Custard pour le fond */
         gray: {
-          900: '#1E3A8A',          /* Bleu foncé */
-          800: '#FEF7ED',          /* Fond crème */
-          700: '#FEF7ED',          /* Fond crème */
-          300: '#6B7280',          /* Texte gris */
+          900: '#5D0D18',          /* Bloodstone */
+          800: '#FFF9EB',          /* Vanilla Custard */
+          700: '#FFF9EB',          /* Vanilla Custard */
+          300: '#9FB2AC',          /* Misty Sage */
         }
+      },
+      fontFamily: {
+        heading: ['Hatton', 'Playfair Display', 'Cormorant Garamond', 'serif'],
+        body: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
     },
   },
