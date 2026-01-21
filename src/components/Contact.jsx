@@ -42,7 +42,7 @@ const Contact = () => {
         <h2 className="section-title">Contactez-moi</h2>
         
         <p className="text-center text-gray-600 text-lg mb-12 max-w-3xl mx-auto">
-          Vous avez une question, un projet ou une opportunité à discuter ?
+          Vous souhaitez en savoir plus sur mon parcours ou discuter d'une opportunité de carrière ?
           N'hésitez pas à me contacter, je serai ravie d'échanger avec vous.
         </p>
 

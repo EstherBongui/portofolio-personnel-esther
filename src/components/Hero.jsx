@@ -21,7 +21,7 @@ const Hero = () => {
             <p className="text-lg md:text-xl text-gray-600 font-body leading-relaxed max-w-lg">
               Actuellement en formation à l'Université du Québec à Rimouski, je développe des solutions logicielles complètes
               avec C#, React, et les technologies .NET. Animée par la curiosité et l'envie d'apprendre,
-              je recherche un stage ou un emploi pour élargir mes compétences et contribuer à des projets stimulants.
+              je recherche une opportunité de carrière pour élargir mes compétences et contribuer à des projets stimulants.
             </p>
 
             {/* Ligne décorative orange */}
@@ -103,7 +103,7 @@ const Hero = () => {
                 {/* Labels semi-transparents blancs avec informations */}
                 <div className="absolute top-12 left-4">
                   <div className="bg-white/80 backdrop-blur-sm text-dark px-4 py-2 rounded-full text-sm font-medium shadow-lg border border-white/50">
-                    Développeuse Web
+                  Étudiante au baccalauréat en informatique
                   </div>
                 </div>
               </div>

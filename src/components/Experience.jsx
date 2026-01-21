@@ -20,7 +20,7 @@ const Experience = () => {
     },
     {
       id: 2,
-      title: 'Équipière / Team Member',
+      title: 'Équipière',
       company: 'Tim Hortons',
       location: 'Lévis, QC',
       period: 'Juin – Août 2025',
@@ -70,17 +70,17 @@ const Experience = () => {
       id: 1,
       title: 'Baccalauréat en informatique',
       school: 'Université du Québec à Rimouski (UQAR)',
-      location: 'Lévis, QC',
+      location: 'Lévis, Qc',
       period: '2023 – Présent',
       description: 'Formation complète en développement logiciel, bases de données, réseaux et architectures informatiques'
     },
     {
       id: 2,
-      title: 'Baccalauréat scientifique — Diplôme d\'études collégiales',
+      title: 'Baccalauréat scientifique — Diplôme d\'études secondaires',
       school: 'École privée Louis Gregory',
       location: 'Congo',
       period: '2019 – 2022',
-      description: 'Sciences de la nature avec spécialisation en mathématiques et sciences physiques'
+      description: 'Baccalauréat général, mathématiques et sciences physiques'
     }
   ];
 

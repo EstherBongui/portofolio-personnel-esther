@@ -270,10 +270,10 @@ const Projects = () => {
         {/* Call to Action */}
         <div className="text-center mt-16">
           <p className="text-lg text-gray-600 mb-6">
-            Vous avez un projet en tête ?
+            Intéressé(e) par mon profil ?
           </p>
           <a href="#contact" className="btn-primary">
-            Travaillons ensemble
+            Me contacter
           </a>
         </div>
       </div>

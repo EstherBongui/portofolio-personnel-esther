@@ -40,7 +40,7 @@ const About = () => {
             <div className="grid grid-cols-2 gap-6 pt-6">
               <div className="text-center p-4 bg-white rounded-lg border border-primary/20">
                 <div className="text-4xl font-bold text-primary mb-2">2023</div>
-                <div className="text-gray-600">Début du Baccalauréat</div>
+                <div className="text-gray-600">Début du baccalauréat</div>
               </div>
               <div className="text-center p-4 bg-white rounded-lg border border-primary/20">
                 <div className="text-4xl font-bold text-primary mb-2">6+</div>

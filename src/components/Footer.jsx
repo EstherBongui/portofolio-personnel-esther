@@ -53,7 +53,7 @@ const Footer = () => {
               ASP.NET, React et architectures microservices.
             </p>
             <p className="text-gray-100 text-sm">
-              Recherche un stage ou un emploi pour explorer de nouvelles technologies et contribuer à des projets innovants.
+              Recherche une opportunité de carrière pour explorer de nouvelles technologies et contribuer à des projets innovants.
             </p>
           </div>
 
