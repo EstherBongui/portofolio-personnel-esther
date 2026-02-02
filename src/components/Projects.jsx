@@ -44,7 +44,7 @@ const Projects = () => {
       category: 'Web App',
       technologies: ['React', '.NET', 'SQL Server', 'Entity Framework Core', 'API REST', 'Clean Architecture', 'MVVM'],
       github: 'not-available',
-      demo: 'not-available',
+      demo: '/portofolio-personnel-esther/multi-media/INF37607_TP3_Video_Esther_Sirielle_Wilfried.mkv',
     },
     {
       id: 3,
@@ -57,7 +57,7 @@ const Projects = () => {
             frontend: 'https://github.com/EstherBongui/AnatOasis_FrontEnd_Project.git',
             backend: 'https://github.com/EstherBongui/AnatomyOasis_Projet.git'
           },
-          demo: 'not-available',
+          demo: '/portofolio-personnel-esther/multi-media/Video_AnatOasis.mkv',
     },
     {
       id: 4,
