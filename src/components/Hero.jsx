@@ -40,6 +40,74 @@ const MailIcon = () => (
   </svg>
 );
 
+const TERMINAL_LINES = [
+  { delay: 400,  text: '$ npm run portfolio --env=prod', color: 'rgba(93,13,24,0.7)' },
+  { delay: 1100, text: '> Initialisation...', color: '#9FB2AC' },
+  { delay: 1800, text: '> Stack chargée : C#, React, .NET  ✓', color: '#28C840' },
+  { delay: 2600, text: '> Microservices connectés          ✓', color: '#28C840' },
+  { delay: 3400, text: '> 9 projets indexés                ✓', color: '#28C840' },
+  { delay: 4200, text: '> 2 prix chargés                   ✓', color: '#28C840' },
+  { delay: 5000, text: '> Portfolio prêt sur le port 3000  ✓', color: '#9FB2AC' },
+  { delay: 5700, text: '$ _', color: 'rgba(93,13,24,0.5)' },
+];
+
+const TerminalBlock = () => {
+  const [visibleLines, setVisibleLines] = useState([]);
+
+  useEffect(() => {
+    const timers = TERMINAL_LINES.map((line, i) =>
+      setTimeout(() => setVisibleLines(prev => [...prev, i]), line.delay)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  return (
+    <div className="relative w-full max-w-sm">
+      {/* Offset decorative borders */}
+      <div className="absolute rounded-2xl" style={{ top: '20px', right: '-10px', width: '100%', height: '100%', border: '1px solid rgba(159,178,172,0.35)' }} />
+      <div className="absolute rounded-2xl" style={{ top: '10px', right: '-5px', width: '100%', height: '100%', border: '1px dashed rgba(93,13,24,0.15)' }} />
+
+      {/* Terminal window */}
+      <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl corner-bracket"
+        style={{ background: 'rgba(255,249,235,0.96)', backdropFilter: 'blur(12px)', border: '1px solid rgba(159,178,172,0.4)' }}>
+
+        {/* Title bar */}
+        <div className="flex items-center gap-1.5 px-4 py-3"
+          style={{ borderBottom: '1px solid rgba(159,178,172,0.25)', background: 'rgba(93,13,24,0.03)' }}>
+          <span className="w-3 h-3 rounded-full" style={{ background: '#FF5F57' }} />
+          <span className="w-3 h-3 rounded-full" style={{ background: '#FEBC2E' }} />
+          <span className="w-3 h-3 rounded-full" style={{ background: '#28C840' }} />
+          <span className="font-mono text-xs ml-2" style={{ color: 'rgba(93,13,24,0.4)' }}>
+            ~/esther-bongui/portfolio
+          </span>
+        </div>
+
+        {/* Terminal body */}
+        <div className="p-5 font-mono text-sm space-y-2" style={{ minHeight: '240px' }}>
+          {TERMINAL_LINES.map((line, i) =>
+            visibleLines.includes(i) ? (
+              <div key={i} style={{ color: line.color, opacity: 1, transition: 'opacity 0.3s ease' }}>
+                {line.text}
+              </div>
+            ) : null
+          )}
+          {visibleLines.length < TERMINAL_LINES.length && (
+            <span className="typing-cursor" />
+          )}
+        </div>
+
+        {/* Status bar */}
+        <div className="px-5 py-2 font-mono text-xs flex items-center justify-between"
+          style={{ borderTop: '1px solid rgba(93,13,24,0.08)', background: 'rgba(93,13,24,0.03)', color: 'rgba(93,13,24,0.45)' }}>
+          <span style={{ color: '#28C840' }}>● online</span>
+          <span>UQAR · Lévis, QC</span>
+          <span>2023–présent</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Hero = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [roleIndex, setRoleIndex]         = useState(0);
@@ -83,6 +151,7 @@ const Hero = () => {
       <div className="section-container relative z-10">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-14 items-center">
 
+          {/* Left — text */}
           <div className="space-y-5">
             <div className="flex items-center gap-2 font-mono text-xs" style={{ color: 'rgba(93,13,24,0.4)' }}>
               <span className="w-3 h-3 rounded-full" style={{ background: '#FF5F57' }} />
@@ -150,30 +219,9 @@ const Hero = () => {
             </div>
           </div>
 
+          {/* Right — terminal */}
           <div className="relative flex justify-center md:justify-end">
-            <div className="relative w-full max-w-sm">
-              <div className="absolute rounded-2xl" style={{ top: '20px', right: '-10px', width: '100%', height: '100%', border: '1px solid rgba(159,178,172,0.35)' }} />
-              <div className="absolute rounded-2xl" style={{ top: '10px', right: '-5px', width: '100%', height: '100%', border: '1px dashed rgba(93,13,24,0.15)' }} />
-              <div className="relative z-10 rounded-2xl p-5 shadow-2xl corner-bracket"
-                style={{ background: 'rgba(255,249,235,0.92)', backdropFilter: 'blur(12px)', border: '1px solid rgba(159,178,172,0.4)' }}>
-                <div className="relative rounded-xl overflow-hidden">
-                  <img src="/portofolio-personnel-esther/multi-media/esther_profil.png" alt="Esther Bongui" className="w-full h-auto object-cover" />
-                  <div className="absolute bottom-0 left-0 right-0 h-12" style={{ background: 'linear-gradient(to top, rgba(255,249,235,0.5), transparent)' }} />
-                </div>
-                <div className="absolute top-10 -left-4">
-                  <div className="px-4 py-2 rounded-full text-sm font-medium shadow-lg"
-                    style={{ background: 'rgba(255,255,255,0.95)', border: '1px solid rgba(159,178,172,0.5)', color: '#5D0D18', backdropFilter: 'blur(8px)', fontFamily: 'monospace' }}>
-                    <span style={{ color: '#9FB2AC' }}>{">"}_</span> Étudiante en informatique
-                  </div>
-                </div>
-                <div className="mt-4 px-3 py-2 rounded-lg font-mono text-xs flex items-center justify-between"
-                  style={{ background: 'rgba(93,13,24,0.04)', border: '1px solid rgba(93,13,24,0.1)', color: 'rgba(93,13,24,0.55)' }}>
-                  <span style={{ color: '#28C840' }}>● online</span>
-                  <span>UQAR · Lévis, QC</span>
-                  <span>2023–présent</span>
-                </div>
-              </div>
-            </div>
+            <TerminalBlock />
           </div>
 
         </div>

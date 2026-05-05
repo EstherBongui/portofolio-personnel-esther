@@ -4,22 +4,39 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Accueil', href: '#home' },
-    { name: 'À propos', href: '#about' },
-    { name: 'Compétences', href: '#skills' },
-    { name: 'Projets', href: '#projects' },
-    { name: 'Expérience', href: '#experience' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Accueil',      href: '#home'       },
+    { name: 'À propos',    href: '#about'      },
+    { name: 'Compétences', href: '#skills'     },
+    { name: 'Projets',      href: '#projects'   },
+    { name: 'Prix',         href: '#awards'     },
+    { name: 'Expérience',  href: '#experience' },
+    { name: 'Contact',      href: '#contact'    },
   ];
 
   return (
     <header className="header-nav">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
+
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#home" className="text-2xl md:text-3xl font-bold text-primary font-heading">
-              Portfolio
+            <a href="#home" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
+              <div
+                className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0"
+                style={{
+                  border: '2px solid rgba(93,13,24,0.25)',
+                  boxShadow: '0 0 10px rgba(93,13,24,0.12)',
+                }}
+              >
+                <img
+                  src="/portofolio-personnel-esther/multi-media/about_me.jpeg"
+                  alt="Esther Bongui"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <span className="text-2xl md:text-3xl font-bold font-heading" style={{ color: '#5D0D18' }}>
+                Portfolio
+              </span>
             </a>
           </div>
 
@@ -51,11 +68,10 @@ const Header = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {isMobileMenuOpen ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
+                {isMobileMenuOpen
+                  ? <path d="M6 18L18 6M6 6l12 12" />
+                  : <path d="M4 6h16M4 12h16M4 18h16" />
+                }
               </svg>
             </button>
           </div>
@@ -82,4 +98,3 @@ const Header = () => {
 };
 
 export default Header;
-
