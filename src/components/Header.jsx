@@ -20,23 +20,8 @@ const Header = () => {
 
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#home" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-              <div
-                className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0"
-                style={{
-                  border: '2px solid rgba(93,13,24,0.25)',
-                  boxShadow: '0 0 10px rgba(93,13,24,0.12)',
-                }}
-              >
-                <img
-                  src="/portofolio-personnel-esther/multi-media/about_me.jpeg"
-                  alt="Esther Bongui"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-              <span className="text-2xl md:text-3xl font-bold font-heading" style={{ color: '#5D0D18' }}>
-                Portfolio
-              </span>
+            <a href="#home" className="text-2xl md:text-3xl font-bold font-heading" style={{ color: '#5D0D18', textDecoration: 'none' }}>
+              Portfolio
             </a>
           </div>
 

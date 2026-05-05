@@ -153,17 +153,7 @@ const Hero = () => {
 
           {/* Left — text */}
           <div className="space-y-5">
-            <div className="flex items-center gap-2 font-mono text-xs" style={{ color: 'rgba(93,13,24,0.4)' }}>
-              <span className="w-3 h-3 rounded-full" style={{ background: '#FF5F57' }} />
-              <span className="w-3 h-3 rounded-full" style={{ background: '#FEBC2E' }} />
-              <span className="w-3 h-3 rounded-full" style={{ background: '#28C840' }} />
-              <span className="ml-3 tracking-widest">~/esther-bongui/portfolio</span>
-            </div>
-
-            <p className="font-mono text-sm" style={{ color: 'rgba(159,178,172,0.9)' }}>
-              <span style={{ color: '#5D0D18' }}>$</span> run portfolio.sh --mode=intro
-            </p>
-
+            
             <div className="space-y-1">
               <h1 className="text-6xl md:text-7xl font-bold font-heading leading-tight neon-text" style={{ color: '#5D0D18' }}>
                 Hello,
@@ -191,7 +181,7 @@ const Hero = () => {
             <div className="flex items-center gap-3 py-1">
               <div className="h-px flex-1 max-w-16" style={{ background: 'linear-gradient(to right, transparent, #5D0D18)' }} />
               <span className="w-2 h-2 rotate-45 border" style={{ borderColor: '#9FB2AC' }} />
-              <span className="font-mono text-xs tracking-widest" style={{ color: 'rgba(159,178,172,0.7)' }}>CODE · BUILD · LEARN</span>
+              <span className="font-mono text-xs tracking-widest" style={{ color: 'rgba(159,178,172,0.7)' }}>CODER · CONSTRUIRE · APPRENDRE</span>
               <span className="w-2 h-2 rotate-45 border" style={{ borderColor: '#9FB2AC' }} />
               <div className="h-px flex-1 max-w-16" style={{ background: 'linear-gradient(to left, transparent, #5D0D18)' }} />
             </div>
@@ -204,7 +194,7 @@ const Hero = () => {
             <div className="flex gap-5 pt-1">
               {[
                 { href: 'https://github.com/EstherBongui', icon: <GithubIcon />, label: 'GitHub' },
-                { href: 'http://www.linkedin.com/in/esther-christie-rolina-bongui-308b88323', icon: <LinkedinIcon />, label: 'LinkedIn' },
+                { href: 'http://www.linkedin.com/in/esther-bongui-308b88323', icon: <LinkedinIcon />, label: 'LinkedIn' },
                 { href: 'mailto:estherbongui@gmail.com', icon: <MailIcon />, label: 'Email' },
               ].map(({ href, icon, label }) => (
                 <a key={label} href={href}
