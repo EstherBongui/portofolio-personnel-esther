@@ -1,26 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+const GithubIcon = () => (
+  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+  </svg>
+);
+
+const ExternalIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+  </svg>
+);
+
+const CATEGORY_COLORS = {
+  'Web App':    { bg: 'rgba(93,13,24,0.07)',   border: 'rgba(93,13,24,0.25)',   text: '#5D0D18'  },
+  'E-Commerce': { bg: 'rgba(159,178,172,0.15)', border: 'rgba(159,178,172,0.5)', text: '#5a7a74'  },
+  'Backend':    { bg: 'rgba(93,13,24,0.07)',   border: 'rgba(93,13,24,0.25)',   text: '#5D0D18'  },
+  'Jeu':        { bg: 'rgba(159,178,172,0.15)', border: 'rgba(159,178,172,0.5)', text: '#5a7a74'  },
+  'Jeu Web':    { bg: 'rgba(93,13,24,0.07)',   border: 'rgba(93,13,24,0.25)',   text: '#5D0D18'  },
+};
 
 const Projects = () => {
-  const [filter, setFilter] = useState('Tous');
+  const [filter, setFilter]           = useState('Tous');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDemo, setSelectedDemo] = useState('');
+  const [titleVisible, setTitleVisible] = useState(false);
 
-  const openModal = (demoUrl) => {
-    setSelectedDemo(demoUrl);
-    setIsModalOpen(true);
-  };
+  const openModal  = (url) => { setSelectedDemo(url); setIsModalOpen(true); };
+  const closeModal = ()    => { setIsModalOpen(false); setSelectedDemo(''); };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedDemo('');
-  };
+  /* Scroll reveal */
+  useEffect(() => {
+    const els = document.querySelectorAll('#projects .reveal, #projects .reveal-scale');
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.06 }
+    );
+    els.forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, [filter]);
+
+  /* Title underline */
+  useEffect(() => {
+    const el = document.querySelector('#projects .section-title-tech');
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => { if (entries[0].isIntersecting) { setTitleVisible(true); obs.disconnect(); } },
+      { threshold: 0.5 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   const projects = [
     {
       id: 1,
-      title: 'Plateforme Web de Réservation de Cinéma',
+      title: 'Plateforme de Réservation de Cinéma',
+      shortDesc: 'Plateforme web transactionnelle avec catalogue de films, réservation de sièges, paiement en ligne et CI/CD.',
       description: 'Développement d\'une plateforme web transactionnelle de réservation de cinéma en suivant les pratiques Agile (Scrum). Le projet inclut l\'analyse et la conception d\'une Solution Viable Minimale (MVS), un catalogue de films, une authentification sécurisée avec JWT, un système de réservation de sièges et un paiement en ligne. Mise en œuvre des pratiques Agile avec user stories, sprints, CI/CD, tests unitaires, documentation API (Swagger) et intégration Frontend/Backend complète.',
-      image: '🎬',
       category: 'Web App',
       technologies: ['C#', 'ASP.NET', 'React', 'JWT', 'Swagger', 'CI/CD', 'Agile/Scrum', 'Tests unitaires'],
       github: 'not-available',
@@ -28,9 +65,9 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: 'Développement d\'un Système ERP/PGI - Nordik Adventures',
-      description: 'Développement d\'un système ERP/PGI desktop (WPF .NET 8.0) pour Nordik Adventures avec modélisation de base de données MySQL. Modules implémentés : gestion des stocks (produits, catégories, fournisseurs, mouvements d\'inventaire), facturation (génération de factures avec calcul automatique TPS/TVQ, paiements), comptabilité (journal comptable en partie double), achats fournisseurs, ventes et commandes clients, et CRM (gestion des clients, interactions, campagnes marketing). L\'application inclut un système d\'authentification avec gestion des rôles, des tableaux de bord interactifs, une interface client pour les achats avec panier, et l\'implémentation des règles métier transactionnelles. Le projet démontre une compréhension de l\'architecture d\'applications ERP, de la modélisation relationnelle et de la comptabilité de base.',
-      image: '📊',
+      title: 'ERP/PGI — Nordik Adventures',
+      shortDesc: 'Système ERP desktop WPF .NET 8 avec gestion des stocks, facturation, comptabilité et CRM.',
+      description: 'Développement d\'un système ERP/PGI desktop (WPF .NET 8.0) pour Nordik Adventures avec modélisation de base de données MySQL. Modules implémentés : gestion des stocks, facturation (TPS/TVQ), comptabilité en partie double, achats fournisseurs, ventes, commandes clients et CRM.',
       category: 'Web App',
       technologies: ['C#', 'WPF .NET 8.0', 'MySQL', 'Entity Framework', 'MVVM'],
       github: 'not-available',
@@ -38,9 +75,9 @@ const Projects = () => {
     },
     {
       id: 9,
-      title: 'Plateforme Web de Déclaration de Revenus (Revenu Québec simulé)',
-      description: 'Développement d\'une application Web permettant aux contribuables de produire et soumettre leur déclaration de revenus en ligne. L\'application comprend un Front End en React structuré selon le modèle MVVM, et un Back End en .NET basé sur une Clean Architecture organisée en couches. Le système permet l\'inscription et l\'authentification sécurisée des utilisateurs, la saisie et l\'envoi des déclarations de revenus, le suivi de leur traitement et le téléchargement des avis de cotisation. Le Back End repose sur une base de données SQL Server avec Entity Framework Core, intègre des règles de validation, des services simulés gouvernementaux et un tableau de bord administratif pour la gestion des déclarations. L\'ensemble communique via une API REST sécurisée, assurant une interaction complète entre le front end et le back end.',
-      image: '📋',
+      title: 'Déclaration de Revenus (Revenu Québec)',
+      shortDesc: 'Application web full-stack de déclaration fiscale avec Clean Architecture, React MVVM et .NET.',
+      description: 'Développement d\'une application Web permettant aux contribuables de produire et soumettre leur déclaration de revenus en ligne. Front End React (MVVM), Back End .NET (Clean Architecture), SQL Server, Entity Framework Core, API REST sécurisée.',
       category: 'Web App',
       technologies: ['React', '.NET', 'SQL Server', 'Entity Framework Core', 'API REST', 'Clean Architecture', 'MVVM'],
       github: 'not-available',
@@ -48,22 +85,22 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: 'Application Web d\'Apprentissage de l\'Anatomie',
-      description: 'Conception d’une application web interactive pour l’apprentissage de l’anatomie humaine, permettant aux utilisateurs d’explorer les organes, muscles et os à travers des images cliquables et des quiz. Le projet combine un back-end en C# avec ASP.NET en architecture microservices (Ocelot, Swagger, JWT) et un front-end en React avec Redux Toolkit, Axios et Tailwind CSS. L’application inclut une gestion des utilisateurs (participants et administrateurs), un suivi des apprentissages et un système de quiz générés aléatoirement.',
-      image: '🫀',
+      title: 'AnatOasis — Apprentissage de l\'Anatomie',
+      shortDesc: 'Application interactive d\'anatomie humaine avec microservices, quiz et suivi des apprentissages.',
+      description: 'Conception d\'une application web interactive pour l\'apprentissage de l\'anatomie humaine. Back-end en C# avec ASP.NET en architecture microservices (Ocelot, Swagger, JWT) et front-end en React avec Redux Toolkit.',
       category: 'Jeu Web',
       technologies: ['C#', 'ASP.NET', 'React', 'Redux Toolkit', 'Ocelot', 'JWT', 'Swagger'],
-          github: {
-            frontend: 'https://github.com/EstherBongui/AnatOasis_FrontEnd_Project.git',
-            backend: 'https://github.com/EstherBongui/AnatomyOasis_Projet.git'
-          },
-          demo: '/portofolio-personnel-esther/multi-media/Video_AnatOasis.mkv',
+      github: {
+        frontend: 'https://github.com/EstherBongui/AnatOasis_FrontEnd_Project.git',
+        backend:  'https://github.com/EstherBongui/AnatomyOasis_Projet.git',
+      },
+      demo: '/portofolio-personnel-esther/multi-media/Video_AnatOasis.mkv',
     },
     {
       id: 4,
-      title: 'Boutique en Ligne ASP.NET',
-      description: 'Développement d’une application web complète de e-commerce avec ASP.NET et C#, intégrant une interface utilisateur responsive conçue avec Bootstrap et Razor. Le projet permettait l’inscription et l’authentification des clients et vendeurs, la gestion des, produits, des paniers et des factures, ainsi que le traitement des paiements électroniques, via Stripe. L’application exploitait des API REST publiques (DummyJSON), pour la génération de données factices et utilisait Entity Framework Core pour la persistance des données.',
-      image: '🛒',
+      title: 'E-Vente — Boutique en Ligne ASP.NET',
+      shortDesc: 'E-commerce complet avec Stripe, Razor, Bootstrap et API REST DummyJSON.',
+      description: 'Développement d\'une application web complète de e-commerce avec ASP.NET et C#, intégrant une interface responsive Bootstrap/Razor, gestion des paniers, paiements Stripe et Entity Framework Core.',
       category: 'E-Commerce',
       technologies: ['ASP.NET', 'C#', 'Entity Framework', 'Bootstrap', 'Stripe', 'Razor'],
       github: 'https://github.com/EstherBongui/E-Vente_ASP.NET_Interface.git',
@@ -72,8 +109,8 @@ const Projects = () => {
     {
       id: 5,
       title: 'Architecture Microservices E-Commerce',
-      description: 'Conception et développement du back-end d’une plateforme de commerce électronique selon une architecture en microservices, avec ASP.NET Web API et C#. Le projet incluait la création de plusieurs services indépendants (produits, utilisateurs, commandes, panier, paiement) interconnectés via une passerelle Ocelot. Il comportait une authentification sécurisée par jeton JWT, une documentation unifiée avec Swagger et une intégration du paiement électronique Stripe. Chaque service utilisait sa propre base de données gérée avec Entity Framework Core, et le système a été déployé sur Microsoft Azure avec gestion de version Git/GitHub pour le suivi et la collaboration.',
-      image: '⚙️',
+      shortDesc: 'Back-end en microservices avec passerelle Ocelot, JWT, Stripe et déploiement Azure.',
+      description: 'Conception et développement du back-end d\'une plateforme e-commerce en microservices. Services indépendants (produits, utilisateurs, commandes, panier, paiement) interconnectés via Ocelot, JWT, Swagger, Stripe et déployés sur Azure.',
       category: 'Backend',
       technologies: ['ASP.NET Web API', 'C#', 'Ocelot', 'JWT', 'Azure', 'Entity Framework'],
       github: 'https://github.com/EstherBongui/EVente_MicroServices.git',
@@ -82,8 +119,8 @@ const Projects = () => {
     {
       id: 6,
       title: 'Gestion de Rendez-vous Automobile',
-      description: 'Conception d’une application web complète combinant Django (backend) et React (frontend) pour la gestion des rendez-vous, des véhicules et des paiements dans un garage automobile. Le projet intégrait une authentification par jeton avec expiration et des permissions basées sur les rôles (client, mécanicien). L’ORM de Django a été configuré avec SQLite, puis migré vers MySQL, et une interface d’administration a été mise en place. L’API REST a été documentée avec Swagger, incluant les méthodes HTTP (GET, POST, DELETE, PUT) et testée pour la sécurité et la gestion des accès. L’application permettait une interaction fluide entre le client et le personnel via une interface réactive et intuitive.',
-      image: '🚗',
+      shortDesc: 'Application web Django + React avec rôles (client/mécanicien), JWT et Swagger.',
+      description: 'Application web pour la gestion des rendez-vous, véhicules et paiements dans un garage. Django (ORM SQLite→MySQL), React, JWT, Swagger, permissions basées sur les rôles.',
       category: 'Web App',
       technologies: ['Django', 'React', 'MySQL', 'JWT', 'Swagger', 'SQLite'],
       github: 'https://github.com/EstherBongui/Gestion-de-Rendez-vous-Automobil.git',
@@ -92,8 +129,8 @@ const Projects = () => {
     {
       id: 7,
       title: 'Jeu d\'Échecs en C#',
-      description: 'Développement complet d’un jeu d’échecs avec interface utilisateur interactive en C#. Le projet consistait à concevoir une interface permettant au joueur d’entrer ses coups, à valider les déplacements selon les règles officielles, à gérer les interactions entre les pièces, ainsi qu’à détecter les situations d’échec, d’échec et mat et de pat. Le programme enregistre également les parties jouées et conserve la liste des coups de chaque joueur.',
-      image: '♟️',
+      shortDesc: 'Jeu d\'échecs complet avec validation des règles, détection d\'échec/mat et historique des parties.',
+      description: 'Développement complet d\'un jeu d\'échecs avec interface interactive en C#. Validation des déplacements selon les règles officielles, détection d\'échec et mat, enregistrement des parties.',
       category: 'Jeu',
       technologies: ['C#', 'Logique de Jeu'],
       github: 'https://github.com/EstherBongui/Jeu-d-chec.git',
@@ -102,8 +139,8 @@ const Projects = () => {
     {
       id: 8,
       title: 'Tic-Tac-Toe Web',
-      description: 'Création d’une application web de type jeu interactif où l’utilisateur peut choisir son niveau de difficulté, entrer ses informations et jouer contre l’ordinateur. Le projet incluait la conception de plusieurs pages web, la gestion dynamique du plateau de jeu, la détection automatique des alignements gagnants et l’affichage des résultats. L’application permet également de consulter l’historique des parties et de recommencer une nouvelle partie à la fin du jeu.',
-      image: '⭕',
+      shortDesc: 'Jeu web contre l\'ordinateur avec niveaux de difficulté, historique et PHP/MySQL.',
+      description: 'Application web de Tic-Tac-Toe avec niveaux de difficulté, historique des parties, détection des alignements gagnants et interface dynamique.',
       category: 'Jeu Web',
       technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
       github: 'https://github.com/EstherBongui/Tic-Tac-Toe-Web.git',
@@ -112,209 +149,300 @@ const Projects = () => {
   ];
 
   const categories = ['Tous', 'Web App', 'E-Commerce', 'Backend', 'Jeu', 'Jeu Web'];
-
-  const filteredProjects = filter === 'Tous' 
-    ? projects 
-    : projects.filter(project => project.category === filter);
+  const filtered   = filter === 'Tous' ? projects : projects.filter(p => p.category === filter);
 
   return (
-    <section id="projects" className="bg-light">
+    <section id="projects" style={{ background: '#FFF9EB' }}>
       <div className="section-container">
-        <h2 className="section-title">Mes Projets</h2>
-        
-        <p className="text-center text-gray-600 text-lg mb-8 max-w-3xl mx-auto">
-          Découvrez une sélection de mes projets récents. Chaque projet représente
-          une opportunité d'apprentissage et de création.
-        </p>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`px-6 py-2 rounded-full font-medium transition duration-300 ${
-                filter === category
-                  ? 'bg-primary text-dark shadow-lg'
-                  : 'bg-light/80 text-dark border border-gray-300/50 hover:bg-light hover:border-gray-400/60'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <div key={project.id} className="card group">
-              {/* Project Image/Icon */}
-              <div className="text-center mb-6">
-                <div className="text-7xl mb-4">{project.image}</div>
-                <h3 className="text-xl font-bold text-dark group-hover:text-primary transition duration-300">
-                  {project.title}
-                </h3>
-              </div>
-
-              {/* Description */}
-              <p className="text-gray-600 mb-6 text-justify">
-                {project.description}
-              </p>
-
-              {/* Technologies */}
-              <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                {project.technologies.map((tech, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 bg-blue-50 text-primary text-sm rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Links */}
-              <div className="flex gap-4 justify-center flex-wrap">
-                {/* GitHub Links */}
-                {typeof project.github === 'object' ? (
-                  // Multiple GitHub repos (Frontend + Backend)
-                  <>
-                    {project.github.frontend === 'not-available' ? (
-                      <button
-                        onClick={() => openModal('not-available')}
-                        className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg hover:border-primary hover:text-primary transition duration-300"
-                      >
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                        </svg>
-                        Frontend
-                      </button>
-                    ) : (
-                      <a
-                        href={project.github.frontend}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg hover:border-primary hover:text-primary transition duration-300"
-                      >
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                        </svg>
-                        Frontend
-                      </a>
-                    )}
-                    {project.github.backend === 'not-available' ? (
-                      <button
-                        onClick={() => openModal('not-available')}
-                        className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg hover:border-primary hover:text-primary transition duration-300"
-                      >
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                        </svg>
-                        Backend
-                      </button>
-                    ) : (
-                      <a
-                        href={project.github.backend}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg hover:border-primary hover:text-primary transition duration-300"
-                      >
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                        </svg>
-                        Backend
-                      </a>
-                    )}
-                  </>
-                ) : project.github === 'not-available' ? (
-                  // Single GitHub repo not available
-                  <button
-                    onClick={() => openModal('not-available')}
-                    className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg hover:border-primary hover:text-primary transition duration-300"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                    </svg>
-                    Code
-                  </button>
-                ) : (
-                  // Single GitHub repo available
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg hover:border-primary hover:text-primary transition duration-300"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                    </svg>
-                    Code
-                  </a>
-                )}
-                
-                {/* Demo Link */}
-                <button
-                  onClick={() => openModal(project.demo)}
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition duration-300 shadow-md hover:shadow-lg"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                  Demo
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <p className="text-lg text-gray-600 mb-6">
-            Intéressé(e) par mon profil ?
+        {/* Title */}
+        <div className="text-center mb-16">
+<h2 className={`section-title section-title-tech ${titleVisible ? 'visible' : ''}`}>
+            Mes Projets
+          </h2>
+          <p className="mt-6 text-base max-w-2xl mx-auto reveal" style={{ color: '#6B7280' }}>
+            Chaque projet représente une opportunité d'apprentissage et de création.
+            Des solutions complètes, du back-end à l'interface utilisateur.
           </p>
-          <a href="#contact" className="btn-primary">
-            Me contacter
-          </a>
+        </div>
+
+        {/* Filter buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12 reveal">
+          {categories.map((cat) => {
+            const active = filter === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className="font-mono text-sm transition-all duration-300"
+                style={{
+                  padding: '6px 18px',
+                  borderRadius: '6px',
+                  border: active ? '1px solid rgba(93,13,24,0.6)' : '1px solid rgba(159,178,172,0.4)',
+                  background: active ? 'rgba(93,13,24,0.08)' : 'transparent',
+                  color: active ? '#5D0D18' : 'rgba(93,13,24,0.5)',
+                  boxShadow: active ? '0 0 12px rgba(93,13,24,0.1)' : 'none',
+                  cursor: 'pointer',
+                  fontWeight: active ? '600' : '400',
+                }}
+              >
+                {active && <span style={{ marginRight: '4px', color: '#9FB2AC' }}>{'>'}</span>}
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Projects grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map((project, idx) => {
+            const catStyle = CATEGORY_COLORS[project.category] || CATEGORY_COLORS['Web App'];
+            return (
+              <div
+                key={project.id}
+                className="project-card-tech reveal-scale flex flex-col"
+                style={{ transitionDelay: `${(idx % 3) * 0.08}s` }}
+              >
+                {/* Card header */}
+                <div
+                  className="px-5 pt-5 pb-4"
+                  style={{
+                    borderBottom: '1px solid rgba(159,178,172,0.2)',
+                  }}
+                >
+                  {/* Top row: dots + category */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgba(93,13,24,0.25)' }} />
+                      <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgba(159,178,172,0.35)' }} />
+                      <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgba(93,13,24,0.15)' }} />
+                    </div>
+                    <span
+                      className="font-mono text-xs px-2 py-1 rounded"
+                      style={{
+                        background: catStyle.bg,
+                        border: `1px solid ${catStyle.border}`,
+                        color: catStyle.text,
+                      }}
+                    >
+                      {project.category.toLowerCase().replace(' ', '-')}
+                    </span>
+                  </div>
+
+                  {/* Icon + title */}
+                  <div className="flex items-start gap-3">
+                    <h3
+                      className="font-heading font-bold text-base leading-snug"
+                      style={{ color: '#5D0D18' }}
+                    >
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Card body */}
+                <div className="px-5 py-4 flex-1 flex flex-col gap-4">
+                  {/* Short description */}
+                  <p className="text-sm leading-relaxed" style={{ color: '#6B7280' }}>
+                    {project.shortDesc}
+                  </p>
+
+                  {/* Tech stack */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className="tech-badge">{tech}</span>
+                    ))}
+                  </div>
+
+                  {/* Spacer */}
+                  <div className="flex-1" />
+
+                  {/* Actions */}
+                  <div className="flex items-center gap-2 flex-wrap pt-1" style={{ borderTop: '1px solid rgba(159,178,172,0.2)', paddingTop: '12px' }}>
+                    {/* GitHub */}
+                    {typeof project.github === 'object' ? (
+                      <>
+                        {['frontend', 'backend'].map((key) => (
+                          project.github[key] === 'not-available' ? (
+                            <button
+                              key={key}
+                              onClick={() => openModal('not-available')}
+                              className="flex items-center gap-1.5 transition-all duration-200 hover:scale-105"
+                              style={{
+                                padding: '5px 10px',
+                                borderRadius: '6px',
+                                border: '1px solid rgba(159,178,172,0.35)',
+                                background: 'transparent',
+                                color: 'rgba(93,13,24,0.45)',
+                                fontSize: '0.75rem',
+                                fontFamily: 'monospace',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              <GithubIcon />
+                              {key === 'frontend' ? 'Front' : 'Back'}
+                            </button>
+                          ) : (
+                            <a
+                              key={key}
+                              href={project.github[key]}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1.5 transition-all duration-200 hover:scale-105"
+                              style={{
+                                padding: '5px 10px',
+                                borderRadius: '6px',
+                                border: '1px solid rgba(93,13,24,0.3)',
+                                background: 'rgba(93,13,24,0.05)',
+                                color: '#5D0D18',
+                                fontSize: '0.75rem',
+                                fontFamily: 'monospace',
+                                textDecoration: 'none',
+                              }}
+                            >
+                              <GithubIcon />
+                              {key === 'frontend' ? 'Front' : 'Back'}
+                            </a>
+                          )
+                        ))}
+                      </>
+                    ) : project.github === 'not-available' ? (
+                      <button
+                        onClick={() => openModal('not-available')}
+                        className="flex items-center gap-1.5 transition-all duration-200 hover:scale-105"
+                        style={{
+                          padding: '5px 10px',
+                          borderRadius: '6px',
+                          border: '1px solid rgba(159,178,172,0.35)',
+                          background: 'transparent',
+                          color: 'rgba(93,13,24,0.45)',
+                          fontSize: '0.75rem',
+                          fontFamily: 'monospace',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        <GithubIcon /> Code
+                      </button>
+                    ) : (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 transition-all duration-200 hover:scale-105"
+                        style={{
+                          padding: '5px 10px',
+                          borderRadius: '6px',
+                          border: '1px solid rgba(93,13,24,0.3)',
+                          background: 'rgba(93,13,24,0.05)',
+                          color: '#5D0D18',
+                          fontSize: '0.75rem',
+                          fontFamily: 'monospace',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        <GithubIcon /> Code
+                      </a>
+                    )}
+
+                    {/* Demo */}
+                    <button
+                      onClick={() => openModal(project.demo)}
+                      className="flex items-center gap-1.5 transition-all duration-200 hover:scale-105 ml-auto"
+                      style={{
+                        padding: '5px 12px',
+                        borderRadius: '6px',
+                        border: '1px solid rgba(93,13,24,0.4)',
+                        background: project.demo !== 'not-available' ? 'rgba(93,13,24,0.08)' : 'transparent',
+                        color: project.demo !== 'not-available' ? '#5D0D18' : 'rgba(93,13,24,0.35)',
+                        fontSize: '0.75rem',
+                        fontFamily: 'monospace',
+                        cursor: 'pointer',
+                        fontWeight: project.demo !== 'not-available' ? '600' : '400',
+                      }}
+                    >
+                      <ExternalIcon /> Demo
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-16 reveal">
+          <p className="font-mono text-sm mb-5" style={{ color: 'rgba(159,178,172,0.8)' }}>
+            <span style={{ color: '#5D0D18' }}>{'// '}</span>intéressé(e) par mon profil ?
+          </p>
+          <a href="#contact" className="btn-primary">Me contacter</a>
         </div>
       </div>
 
-      {/* Modal pour la démo */}
+      {/* ---- Modal ---- */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
-            <div className="flex justify-between items-center p-4 border-b">
-              <h3 className="text-xl font-bold text-dark">Démonstration</h3>
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50 p-4"
+          style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
+          onClick={closeModal}
+        >
+          <div
+            className="rounded-xl w-full max-w-4xl overflow-hidden"
+            style={{
+              background: '#FFF9EB',
+              border: '1px solid rgba(159,178,172,0.4)',
+              maxHeight: '90vh',
+            }}
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Modal header */}
+            <div
+              className="flex items-center justify-between px-5 py-3"
+              style={{ borderBottom: '1px solid rgba(159,178,172,0.3)' }}
+            >
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full" style={{ background: '#FF5F57' }} />
+                <span className="w-3 h-3 rounded-full" style={{ background: '#FEBC2E' }} />
+                <span className="w-3 h-3 rounded-full" style={{ background: '#28C840' }} />
+                <span className="font-mono text-sm ml-2" style={{ color: 'rgba(93,13,24,0.6)' }}>
+                  demo.preview
+                </span>
+              </div>
               <button
                 onClick={closeModal}
-                className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
+                className="font-mono text-lg leading-none transition-all hover:scale-110"
+                style={{ color: 'rgba(93,13,24,0.5)', background: 'none', border: 'none', cursor: 'pointer' }}
               >
-                ×
+                ✕
               </button>
             </div>
-            <div className="p-4">
+
+            {/* Modal content */}
+            <div className="p-5">
               {selectedDemo === 'not-available' ? (
                 <div className="text-center py-16">
-                  <div className="text-6xl mb-4">🚧</div>
-                  <h4 className="text-2xl font-bold text-dark mb-4">Contenu pas encore disponible</h4>
-                  <p className="text-gray-600 text-lg">
-                    Le code source et la démonstration de ce projet seront bientôt disponibles.
-                    <br />
-                    Merci de votre patience !
+                  <div
+                    className="font-mono text-5xl mb-4"
+                    style={{ color: 'rgba(93,13,24,0.3)' }}
+                  >
+                    {'{ }'}
+                  </div>
+                  <h4 className="font-heading text-2xl font-bold mb-3" style={{ color: '#5D0D18' }}>
+                    Contenu bientôt disponible
+                  </h4>
+                  <p className="text-sm font-mono" style={{ color: '#9FB2AC' }}>
+                    // Le code source et la démo seront publiés prochainement
                   </p>
                 </div>
               ) : selectedDemo.endsWith('.mkv') || selectedDemo.endsWith('.mp4') ? (
-                <video
-                  controls
-                  className="w-full max-h-[70vh]"
-                  autoPlay
-                >
+                <video controls className="w-full rounded-lg" autoPlay style={{ maxHeight: '70vh' }}>
                   <source src={selectedDemo} type="video/mp4" />
                   Votre navigateur ne supporte pas la lecture vidéo.
                 </video>
               ) : (
                 <iframe
                   src={selectedDemo}
-                  className="w-full h-[70vh] rounded"
+                  className="w-full rounded-lg"
+                  style={{ height: '70vh' }}
                   title="Démonstration"
                 />
               )}
@@ -327,4 +455,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
