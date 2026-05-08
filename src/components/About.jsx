@@ -88,7 +88,7 @@ const Illustration = () => (
       {/* Tagline */}
       <text x="160" y="310" textAnchor="middle"
         fontFamily="Courier New, monospace" fontSize="8" letterSpacing="3"
-        fill="rgba(93,13,24,0.2)">ALWAYS MOVING FORWARD</text>
+        fill="rgba(93,13,24,0.2)">TOUJOURS ALLER DE L'AVANT</text>
     </svg>
   </div>
 );
@@ -141,7 +141,7 @@ const About = () => {
               ))}
             </div>
             <div className="pt-4">
-              <a href="#contact" className="btn-primary inline-block">Discutons de votre projet</a>
+              <a href="#contact" className="btn-primary inline-block">Discutons ensemble</a>
             </div>
           </div>
         </div>

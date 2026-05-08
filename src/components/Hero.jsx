@@ -45,9 +45,9 @@ const TERMINAL_LINES = [
   { delay: 1100, text: '> Initialisation...', color: '#9FB2AC' },
   { delay: 1800, text: '> Stack chargée : C#, React, .NET  ✓', color: '#28C840' },
   { delay: 2600, text: '> Microservices connectés          ✓', color: '#28C840' },
-  { delay: 3400, text: '> 9 projets indexés                ✓', color: '#28C840' },
+  { delay: 3400, text: '> 10 projets indexés               ✓', color: '#28C840' },
   { delay: 4200, text: '> 2 prix chargés                   ✓', color: '#28C840' },
-  { delay: 5000, text: '> Portfolio prêt sur le port 3000  ✓', color: '#9FB2AC' },
+  { delay: 5000, text: '> Portfolio déployé                ✓', color: '#9FB2AC' },
   { delay: 5700, text: '$ _', color: 'rgba(93,13,24,0.5)' },
 ];
 

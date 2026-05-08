@@ -13,6 +13,12 @@ const StarIcon = () => (
   </svg>
 );
 
+const ExternalIcon = () => (
+  <svg className="w-3 h-3 inline ml-1" style={{ opacity: 0.5 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+  </svg>
+);
+
 const AWARDS = [
   {
     id: 1,
@@ -22,7 +28,7 @@ const AWARDS = [
     project: 'AnatOasis',
     date: 'Avril 2026',
     org: 'Université du Québec à Rimouski',
-    description: 'Premier prix dans la catégorie Universitaire Informatique Baccalauréat Lévis pour le projet AnatOasis — application interactive d\'apprentissage de l\'anatomie humaine en microservices.',
+    description: "Premier prix dans la catégorie Universitaire Informatique Baccalauréat Lévis pour le projet AnatOasis — application interactive d'apprentissage de l'anatomie humaine en microservices.",
     accent: true,
   },
   {
@@ -74,7 +80,7 @@ const Awards = () => {
             Prix &amp; Distinctions
           </h2>
           <p className="mt-6 text-base max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
-            Reconnaissances obtenues dans le cadre de compétitions académiques et d'innovation.
+            Reconnaissances obtenues dans le cadre de compétitions académiques et d&apos;innovation.
           </p>
         </div>
 
@@ -146,10 +152,17 @@ const Awards = () => {
 
               {/* Footer: project tag + org */}
               <div className="flex items-center justify-between flex-wrap gap-2">
-                <span className="tech-badge">
-                  <span style={{ color: '#9FB2AC' }}>▸</span>
+                <a
+                  href="https://www.uqar.ca/projets-fi3e/anatoasis/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tech-badge"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <span style={{ color: '#9FB2AC' }}>&#9658;</span>
                   {award.project}
-                </span>
+                  <ExternalIcon />
+                </a>
                 <span className="font-mono text-xs" style={{ color: 'rgba(93,13,24,0.4)' }}>
                   {award.org}
                 </span>

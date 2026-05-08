@@ -1,45 +1,58 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const MAIN_SKILLS = [
-  { name: 'HTML / CSS',       level: 100, icon: '🌐', category: 'Langages'         },
-  { name: 'C#',               level: 95,category: 'Langages'         },
-  { name: 'Entity Framework', level: 95,category: 'Frameworks'       },
-  { name: 'Bootstrap',        level: 95,category: 'Frameworks'       },
-  { name: 'React',            level: 90,category: 'Frameworks'       },
-  { name: 'ASP.NET',          level: 80,category: 'Frameworks'       },
-  { name: 'JavaScript',       level: 75,category: 'Langages'         },
-  { name: 'MySQL',            level: 65,category: 'Bases de données' },
-  { name: 'Git & GitHub',     level: 50,category: 'Outils'           },
-  { name: 'Django',           level: 40,category: 'Frameworks'       },
+const KEY_SKILLS = [
+  { name: 'C#',         category: 'Langage',         desc: 'Langage principal'    },
+  { name: 'React',      category: 'Framework',        desc: 'Frontend moderne'     },
+  { name: 'ASP.NET',    category: 'Framework',        desc: 'Backend .NET'         },
+  { name: 'JavaScript', category: 'Langage',         desc: 'Web fondamental'      },
+  { name: 'HTML / CSS', category: 'Langage',         desc: 'Intégration web'      },
+  { name: 'MySQL',      category: 'Base de données',  desc: 'Base relationnelle'   },
 ];
 
-const TOOLS = [
+const OTHER = [
+  { name: 'Entity Framework', accent: true  },
+  { name: 'Bootstrap',        accent: false },
+  { name: 'React Native',     accent: true  },
+  { name: 'Django',           accent: false },
+  { name: 'Git & GitHub',     accent: true  },
+  { name: 'TypeScript',       accent: false },
+  { name: 'SQL Server',       accent: true  },
+  { name: 'PHP',              accent: false },
   { name: 'Visual Studio',    accent: true  },
   { name: 'VS Code',          accent: false },
   { name: 'Postman',          accent: true  },
   { name: 'Azure DevOps',     accent: false },
-  { name: 'SQL Server',       accent: true  },
-  { name: 'MariaDB',          accent: false },
-  { name: 'GitLab',           accent: true  },
-  { name: 'Linux',            accent: false },
-  { name: 'Windows',          accent: true  },
-  { name: 'Draw.io',          accent: false },
-  { name: 'Visual Paradigm',  accent: true  },
-  { name: 'Azure',            accent: false },
-  { name: 'Cisco',            accent: true  },
-  { name: 'Wireshark',        accent: false },
-  { name: 'Canva',            accent: true  },
-  { name: 'Overleaf (LaTeX)', accent: false },
-];
-
-const CONCEPTS = [
-  'Microservices','JWT Authentication','REST API','Swagger','Ocelot Gateway',
-  'Stripe Payment','Redux Toolkit','Axios','NoSQL','XML','Assembleur MASM',
-  'CI/CD','Tests unitaires','Agile (Scrum)','Clean Architecture','MVVM',
+  { name: 'MariaDB',          accent: true  },
+  { name: 'GitLab',           accent: false },
+  { name: 'Linux',            accent: true  },
+  { name: 'Windows',          accent: false },
+  { name: 'Draw.io',          accent: true  },
+  { name: 'Visual Paradigm',  accent: false },
+  { name: 'Azure',            accent: true  },
+  { name: 'Cisco',            accent: false },
+  { name: 'Wireshark',        accent: true  },
+  { name: 'Canva',            accent: false },
+  { name: 'Overleaf (LaTeX)', accent: true  },
+  { name: 'Microservices',    accent: false },
+  { name: 'JWT Authentication', accent: true },
+  { name: 'REST API',         accent: false },
+  { name: 'Swagger',          accent: true  },
+  { name: 'Ocelot Gateway',   accent: false },
+  { name: 'Stripe Payment',   accent: true  },
+  { name: 'Redux Toolkit',    accent: false },
+  { name: 'Axios',            accent: true  },
+  { name: 'CI/CD',            accent: false },
+  { name: 'Tests unitaires',  accent: true  },
+  { name: 'Agile (Scrum)',    accent: false },
+  { name: 'Clean Architecture', accent: true },
+  { name: 'MVVM',             accent: false },
+  { name: 'NoSQL',            accent: true  },
+  { name: 'XML',              accent: false },
+  { name: 'Assembleur MASM',  accent: true  },
 ];
 
 const Skills = () => {
-  const titleRef  = useRef(null);
+  const titleRef = useRef(null);
   const [titleVisible, setTitleVisible] = useState(false);
 
   useEffect(() => {
@@ -75,57 +88,64 @@ const Skills = () => {
           </p>
         </div>
 
-        {/* Main skills — tag grid with category badges */}
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-5 mb-16 reveal">
-          {MAIN_SKILLS.map((skill) => (
-            <div key={skill.name} className="flex items-center justify-between py-2"
-              style={{ borderBottom: '1px solid rgba(159,178,172,0.15)' }}>
-              <div className="flex items-center gap-3">
-                <span className="font-semibold text-sm" style={{ color: '#5D0D18' }}>{skill.name}</span>
-              </div>
-              <span className="font-mono text-xs px-2 py-0.5 rounded"
-                style={{ background: 'rgba(93,13,24,0.06)', border: '1px solid rgba(93,13,24,0.15)', color: 'rgba(93,13,24,0.5)' }}>
-                {skill.category}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        <div className="section-divider mb-16" />
-
-        {/* Tools */}
-        <div className="mb-16">
-          <div className="flex items-center gap-4 mb-8 reveal">
+        {/* Key skills */}
+        <div className="mb-6 reveal">
+          <div className="flex items-center gap-4 mb-8">
             <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, transparent, rgba(93,13,24,0.2))' }} />
             <h3 className="font-mono text-sm font-semibold tracking-widest uppercase" style={{ color: '#5D0D18' }}>
-              Outils &amp; Environnements
+              Compétences Clés
             </h3>
             <div className="h-px flex-1" style={{ background: 'linear-gradient(to left, transparent, rgba(93,13,24,0.2))' }} />
           </div>
-          <div className="flex flex-wrap gap-3 justify-center reveal">
-            {TOOLS.map((tool) => (
-              <span key={tool.name} className="tech-badge">
-                <span style={{ color: tool.accent ? '#5D0D18' : '#9FB2AC' }}>▸</span>
-                {tool.name}
-              </span>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {KEY_SKILLS.map((skill, idx) => (
+              <div
+                key={skill.name}
+                className="reveal-scale corner-bracket rounded-xl px-5 py-4 flex flex-col gap-1 transition-all duration-300"
+                style={{
+                  background: 'rgba(255,255,255,0.85)',
+                  border: '1px solid rgba(93,13,24,0.2)',
+                  backdropFilter: 'blur(8px)',
+                  transitionDelay: `${idx * 0.06}s`,
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-3px)';
+                  e.currentTarget.style.boxShadow = '0 10px 28px rgba(93,13,24,0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(93,13,24,0.4)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(93,13,24,0.2)';
+                }}
+              >
+                <span className="font-heading font-bold text-base" style={{ color: '#5D0D18' }}>{skill.name}</span>
+                <span className="font-mono text-xs" style={{ color: '#9FB2AC' }}>{skill.desc}</span>
+                <span className="font-mono text-xs px-2 py-0.5 rounded self-start mt-1"
+                  style={{ background: 'rgba(93,13,24,0.06)', border: '1px solid rgba(93,13,24,0.12)', color: 'rgba(93,13,24,0.5)' }}>
+                  {skill.category}
+                </span>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Architecture / Concepts */}
-        <div className="rounded-2xl p-8 reveal"
-          style={{ background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(159,178,172,0.3)', backdropFilter: 'blur(10px)' }}>
-          <div className="flex items-center gap-3 mb-6">
-            <h3 className="font-heading text-xl font-bold" style={{ color: '#5D0D18' }}>Architecture &amp; Concepts</h3>
+        <div className="section-divider mb-12 mt-14" />
+
+        {/* Combined section */}
+        <div className="reveal">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, transparent, rgba(93,13,24,0.2))' }} />
+            <h3 className="font-mono text-sm font-semibold tracking-widest uppercase" style={{ color: '#5D0D18' }}>
+              Outils, Technologies &amp; Concepts
+            </h3>
+            <div className="h-px flex-1" style={{ background: 'linear-gradient(to left, transparent, rgba(93,13,24,0.2))' }} />
           </div>
-          <div className="flex flex-wrap gap-3">
-            {CONCEPTS.map((concept) => (
-              <span key={concept} className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
-                style={{ background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(93,13,24,0.15)', color: '#5D0D18', cursor: 'default' }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = 'rgba(93,13,24,0.4)'; e.currentTarget.style.boxShadow = '0 6px 16px rgba(93,13,24,0.12)'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'rgba(93,13,24,0.15)'; e.currentTarget.style.boxShadow = 'none'; }}
-              >
-                {concept}
+          <div className="flex flex-wrap gap-3 justify-center">
+            {OTHER.map((item) => (
+              <span key={item.name} className="tech-badge">
+                <span style={{ color: item.accent ? '#5D0D18' : '#9FB2AC' }}>&#9658;</span>
+                {item.name}
               </span>
             ))}
           </div>
