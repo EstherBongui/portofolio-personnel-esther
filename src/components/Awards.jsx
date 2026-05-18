@@ -23,23 +23,27 @@ const AWARDS = [
   {
     id: 1,
     title: 'Premier Prix',
-    subtitle: 'Catégorie Universitaire Informatique Baccalauréat — Lévis',
+    subtitle: 'Catégorie Universitaire Informatique Baccalauréat - Lévis',
     event: 'Forum Innovation UQAR (Fi3e)',
     project: 'AnatOasis',
+    projectLink: 'https://www.uqar.ca/projets-fi3e/anatoasis/',
     date: 'Avril 2026',
     org: 'Université du Québec à Rimouski',
-    description: "Premier prix dans la catégorie Universitaire Informatique Baccalauréat Lévis pour le projet AnatOasis — application interactive d'apprentissage de l'anatomie humaine en microservices.",
+    description: "Premier prix dans la catégorie Universitaire Informatique Baccalauréat Lévis pour le projet AnatOasis - application interactive d'apprentissage de l'anatomie humaine en microservices.",
+    extraLink: 'https://www.uqar.ca/app/uploads/2026/05/img-0610.jpg',
+    extraLinkLabel: 'Photo de la remise',
     accent: true,
   },
   {
     id: 2,
-    title: 'Prix Coup de Cœur du Public',
-    subtitle: 'Vote du public — toutes catégories',
+    title: 'Prix Coup de Cœur du Public Lévis',
+    subtitle: 'Vote du public - toutes catégories',
     event: 'Forum Innovation UQAR (Fi3e)',
-    project: 'AnatOasis',
     date: 'Avril 2026',
     org: 'Université du Québec à Rimouski',
     description: 'Prix décerné par le vote du public lors de la compétition regroupant des projets en ingénierie, informatique et entrepreneuriat.',
+    extraLink: 'https://www.uqar.ca/forum-innovation-ingenierie-informatique-et-entrepreneuriat/le-forum-en-images/',
+    extraLinkLabel: 'Forum en images',
     accent: false,
   },
 ];
@@ -152,17 +156,34 @@ const Awards = () => {
 
               {/* Footer: project tag + org */}
               <div className="flex items-center justify-between flex-wrap gap-2">
-                <a
-                  href="https://www.uqar.ca/projets-fi3e/anatoasis/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="tech-badge"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <span style={{ color: '#9FB2AC' }}>&#9658;</span>
-                  {award.project}
-                  <ExternalIcon />
-                </a>
+                <div className="flex flex-wrap items-center gap-2">
+                  {award.projectLink && (
+                    <a
+                      href={award.projectLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="tech-badge"
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <span style={{ color: '#9FB2AC' }}>&#9658;</span>
+                      {award.project}
+                      <ExternalIcon />
+                    </a>
+                  )}
+                  {award.extraLink && (
+                    <a
+                      href={award.extraLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="tech-badge"
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <span style={{ color: '#9FB2AC' }}>&#9658;</span>
+                      {award.extraLinkLabel}
+                      <ExternalIcon />
+                    </a>
+                  )}
+                </div>
                 <span className="font-mono text-xs" style={{ color: 'rgba(93,13,24,0.4)' }}>
                   {award.org}
                 </span>

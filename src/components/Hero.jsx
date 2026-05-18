@@ -173,7 +173,7 @@ const Hero = () => {
             </div>
 
             <p className="text-base md:text-lg leading-relaxed max-w-lg" style={{ color: '#6B7280' }}>
-              Je ne me contente pas d&apos;écrire du code — je conçois des expériences.
+              Je ne me contente pas d&apos;écrire du code - je conçois des expériences.
               Full Stack avec C#, React &amp; .NET, je transforme des idées complexes en solutions
               élégantes. Chaque ligne de code est une intention.
             </p>

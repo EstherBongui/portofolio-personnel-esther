@@ -67,11 +67,13 @@ const Illustration = () => (
   </div>
 );
 
-const POINTS = [
-  "Curieuse et rigoureuse, j'aime découvrir de nouvelles technologies.",
-  "Je considère chaque projet comme une occasion d'apprendre et de me dépasser.",
-  "J'aime m'impliquer dans des projets collaboratifs et relever des défis techniques.",
-  "Pour moi, la collaboration est la clé pour transformer une idée en réussite concrète.",
+const VALUE_POINTS = [
+  "Des sites et applications qui fonctionnent de bout en bout, de l’écran que l’on voit aux données qui tournent en arrière-plan.",
+  "Des parcours utilisateurs simples : connexion sécurisée, formulaires clairs, tableaux de bord utiles.",
+  "Des projets livrés proprement : analyse, conception, développement, tests et améliorations continues.",
+  "La capacité de relier plusieurs briques (web, mobile, bases de données, API) pour une solution cohérente.",
+  "Une façon de travailler en équipe, échanges réguliers, documentation, respect des délais, sans jargon inutile.",
+  "Une curiosité technique : j’explore de nouveaux outils tout en gardant le cap sur la fiabilité et la qualité.",
 ];
 
 const About = () => {
@@ -96,11 +98,24 @@ const About = () => {
             <Illustration />
           </div>
           <div className="space-y-6 reveal-right">
-            <ul className="space-y-3">
-              {POINTS.map((point, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm md:text-base" style={{ color: '#6B7280' }}>
-                  <span className="mt-1 flex-shrink-0 font-mono text-xs" style={{ color: '#9FB2AC' }}>—</span>
-                  {point}
+            <div>
+              <p className="text-sm md:text-base leading-relaxed mb-5" style={{ color: '#6B7280' }}>
+                Mon profil technique, expliqué simplement - pour les équipes, les recruteurs et les partenaires
+                qui ne codent pas au quotidien.
+              </p>
+            </div>
+            <ul className="space-y-4">
+              {VALUE_POINTS.map((point, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 text-sm md:text-base leading-relaxed"
+                >
+                  <span
+                    className="mt-2.5 flex-shrink-0 w-5 h-px"
+                    style={{ background: 'linear-gradient(90deg, #5D0D18, #9FB2AC)' }}
+                    aria-hidden="true"
+                  />
+                  <span style={{ color: '#6B7280' }}>{point}</span>
                 </li>
               ))}
             </ul>
