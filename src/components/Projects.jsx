@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
+/** Chemins public/ → URL correcte en local et sur GitHub Pages */
+const resolveAsset = (path) => {
+  if (/^https?:\/\//i.test(path)) return path;
+  const base = import.meta.env.BASE_URL;
+  const relative = path
+    .replace(/^\//, '')
+    .replace(/^portofolio-personnel-esther\//, '');
+  return `${base}${relative}`;
+};
+
 const GithubIcon = () => (
   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
@@ -101,9 +111,40 @@ const projects = [
       "Navigation typée avec expo-router (stacks auth, tabs principales, zone admin)",
       "Codebase TypeScript pour la robustesse et la maintenabilité",
     ],
+    images: [
+      'multi-media/TechWorld/2026_TW_image_a_la_une.jpeg',
+      'multi-media/TechWorld/2026_TW_accueil.jpeg',
+      'multi-media/TechWorld/2026_TW_domaines.jpeg',
+      'multi-media/TechWorld/2026_TW_profil.jpeg',
+      'multi-media/TechWorld/2026_TW_tableau_bord_admin.jpeg',
+    ],
     category: 'Mobile App',
     technologies: ['React Native', 'Expo', 'expo-router', 'TypeScript', 'Firebase'],
-    github: 'not-available',
+    github: 'https://github.com/EstherBongui/TechWorld.git',
+    demo: 'not-available',
+  },
+  {
+    id: 11,
+    context: 'academique',
+    title: 'Sécurité Informatique — Hachage & Brute Force',
+    shortDesc: 'Deux applications C# : générateur de dictionnaires de mots de passe et casseur de hachages bcrypt(10) par force brute.',
+    objectif: "Analyser les pratiques de stockage de mots de passe, démontrer les conséquences d'une mauvaise implémentation et proposer une politique de sécurité réaliste.",
+    description: "Deux applications desktop C# ont été développées : un générateur de dictionnaires de mots de passe configurable et un casseur de hachages bcrypt(10) par attaque par force brute. Le projet inclut la résolution de 10 hachages fournis, une analyse comparative des algorithmes de hachage et la rédaction d'une note de service sur la politique de mots de passe.",
+    highlights: [
+      'Générateur de dictionnaires configurable : jeu de caractères, longueur min/max et export vers fichier texte',
+      'Application de brute force bcrypt(10) avec affichage en temps réel des tentatives et du temps écoulé',
+      'Résolution de 10 hachages bcrypt fournis avec identification des mots de passe cachés',
+      'Analyse comparative : MD5, SHA-1 vs bcrypt — vulnérabilités et bonnes pratiques',
+      "Note de service rédigée sur la politique de mots de passe à destination du personnel d'entreprise",
+      'Interface WPF avec paramètres configurables et retour visuel de progression',
+    ],
+    images: ['multi-media/Hachage/2026_HB_app_dictionnaire.png',
+      'multi-media/Hachage/2026_HB_app_hachage.jpeg',
+      'multi-media/Hachage/2026_HB_app_hachage1.jpeg',
+    ],
+    category: 'Desktop',
+    technologies: ['C#', 'WPF', 'bcrypt', 'Cryptographie'],
+    github: 'https://github.com/Seck2000/TP1_HachageMotDePass.git',
     demo: 'not-available',
   },
   {
@@ -121,6 +162,7 @@ const projects = [
       "API REST documentée avec Swagger et consommée par le frontend React",
       "Pipeline CI/CD, tests unitaires et livraisons incrémentales par sprint",
     ],
+    images: [],
     category: 'Web App',
     technologies: ['C#', 'ASP.NET', 'React', 'JWT', 'Swagger', 'CI/CD', 'Agile/Scrum', 'Tests unitaires'],
     github: 'not-available',
@@ -142,9 +184,10 @@ const projects = [
       "CRM : fiches clients, interactions et campagnes marketing",
       "Authentification par rôles et modélisation MySQL avec Entity Framework",
     ],
+    images: [],
     category: 'Desktop',
     technologies: ['C#', 'WPF .NET 8.0', 'MySQL', 'Entity Framework', 'MVVM'],
-    github: 'not-available',
+    github: 'https://github.com/eliDaniel007/TP3-ANALYSE.git',
     demo: 'not-available',
   },
   {
@@ -162,6 +205,17 @@ const projects = [
       "API REST consommée par React ; séparation claire des responsabilités",
       "Simulation de services gouvernementaux et workflow de traitement des déclarations",
       "Tableau de bord administratif pour consulter, valider et gérer les dossiers",
+    ],
+    images: [
+      'multi-media/RevenuQuebec/2025_RV_acceuil.png',
+      'multi-media/RevenuQuebec/2025_RV_connexion.png',
+      'multi-media/RevenuQuebec/2025_RV_inscription.png',
+      'multi-media/RevenuQuebec/2025_RV_profil.png',
+      'multi-media/RevenuQuebec/2025_RV_declaration_revenu.png',
+      'multi-media/RevenuQuebec/2025_RV_detail_declaration.png',
+      'multi-media/RevenuQuebec/2025_RV_historique.png',
+      'multi-media/RevenuQuebec/2025_RV_avis_cotisation_personnalise.png',
+      'multi-media/RevenuQuebec/2025_RV_avis_cotisation_automatise.png',
     ],
     category: 'Web App',
     technologies: ['React', '.NET', 'SQL Server', 'Entity Framework Core', 'API REST', 'Clean Architecture', 'MVVM'],
@@ -183,13 +237,20 @@ const projects = [
       "Parcours utilisateur pensé pour l'apprentissage autonome et le suivi des résultats",
       "Déploiement et intégration front/back testés en conditions de démonstration",
     ],
+    images: [
+      'multi-media/AnatOasis/2026_AO_image_a_la_une.png',
+      'multi-media/AnatOasis/2026_AO_image_corps_humain_interactif.png',
+      'multi-media/AnatOasis/2026_AO_image_articulations_principales.png',
+      'multi-media/AnatOasis/2026_AO_image_quiz.png',
+      'multi-media/AnatOasis/2026_AO_image_statistique.png',
+    ],
     category: 'Web App',
     technologies: ['C#', 'ASP.NET', 'React', 'Redux Toolkit', 'Ocelot', 'JWT', 'Swagger'],
     github: {
       frontend: 'https://github.com/EstherBongui/AnatOasis_FrontEnd_Project.git',
       backend:  'https://github.com/EstherBongui/AnatomyOasis_Projet.git',
     },
-    demo: '/portofolio-personnel-esther/multi-media/Video_AnatOasis.mkv',
+    demo: 'not-available',
     awarded: true,
   },
   {
@@ -207,6 +268,7 @@ const projects = [
       "Gestion des comptes clients, historique de commandes et états de livraison",
       "Couche données Entity Framework Core et architecture MVC côté serveur",
     ],
+    images: [],
     category: 'Web App',
     technologies: ['ASP.NET', 'C#', 'Entity Framework', 'Bootstrap', 'Stripe', 'Razor'],
     github: 'https://github.com/EstherBongui/E-Vente_ASP.NET_Interface.git',
@@ -227,6 +289,7 @@ const projects = [
       "Contrats API versionnés et documentation Swagger par microservice",
       "Déploiement et configuration sur Azure pour simuler un environnement de production",
     ],
+    images: [],
     category: 'Backend',
     technologies: ['ASP.NET Web API', 'C#', 'Ocelot', 'JWT', 'Azure', 'Entity Framework', 'Swagger'],
     github: 'https://github.com/EstherBongui/EVente_MicroServices.git',
@@ -248,6 +311,7 @@ const projects = [
       "Historique des réparations, pièces associées et module de paiement",
       "Documentation Swagger pour faciliter les tests et l'intégration",
     ],
+    images: [],
     category: 'Web App',
     technologies: ['Django', 'React', 'MySQL', 'JWT', 'Swagger', 'SQLite'],
     github: 'https://github.com/EstherBongui/Gestion-de-Rendez-vous-Automobil.git',
@@ -268,6 +332,7 @@ const projects = [
       "Historique des coups et possibilité de rejouer une partie",
       "Architecture modulaire séparant moteur de jeu et couche d'affichage console",
     ],
+    images: [],
     category: 'Jeu',
     technologies: ['C#', 'Logique de Jeu'],
     github: 'https://github.com/EstherBongui/Jeu-d-chec.git',
@@ -288,6 +353,7 @@ const projects = [
       "Tableau de bord des scores et ratio victoires/défaites par joueur",
       "Séparation claire entre logique de jeu (JS) et persistance (PHP)",
     ],
+    images: [],
     category: 'Jeu',
     technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
     github: 'https://github.com/EstherBongui/Tic-Tac-Toe-Web.git',
@@ -300,6 +366,7 @@ const Projects = () => {
   const [demoModal, setDemoModal]         = useState(null);
   const [detailProject, setDetailProject] = useState(null);
   const [titleVisible, setTitleVisible]   = useState(false);
+  const [lightboxImage, setLightboxImage]   = useState(null);
 
   const openDemo    = (url, e) => { e.stopPropagation(); setDemoModal(url); };
   const closeDemo   = ()       => setDemoModal(null);
@@ -503,8 +570,8 @@ const Projects = () => {
                 </div>
                 <p className="text-sm" style={{ color: '#6B7280' }}>
                   {detailProject.context === 'academique'
-                    ? 'Université du Québec à Rimouski — Lévis, QC'
-                    : 'Projet réalisé en autonomie'}
+                    ? "Université du Québec à Rimouski — Lévis, QC"
+                    : "Projet réalisé en autonomie"}
                 </p>
                 <div className="mt-4" style={{ borderBottom: '2px solid rgba(93,13,24,0.15)' }} />
               </div>
@@ -520,7 +587,7 @@ const Projects = () => {
                 </div>
               )}
 
-              {/* Section 1 : Présentation */}
+              {/* Section 1 : Presentation */}
               <div className="mb-6">
                 <h4 className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: '#5D0D18' }}>
                   Présentation
@@ -530,7 +597,7 @@ const Projects = () => {
                 </p>
               </div>
 
-              {/* Section 2 : Réalisations */}
+              {/* Section 2 : Realisations */}
               <div className="mb-6">
                 <h4 className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: '#5D0D18' }}>
                   Réalisations clés
@@ -556,6 +623,30 @@ const Projects = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Section 4 : Aperçus */}
+              {detailProject.images && detailProject.images.length > 0 && (
+                <div className="mb-6">
+                  <h4 className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: '#5D0D18' }}>
+                    Aperçus
+                  </h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    {detailProject.images.map((src, i) => {
+                      const resolved = resolveAsset(src);
+                      return (
+                      <div key={i}
+                        className="rounded-lg overflow-hidden cursor-zoom-in transition-all duration-200 hover:scale-[1.02]"
+                        style={{ border: '1px solid rgba(159,178,172,0.35)', aspectRatio: '16/9', background: 'rgba(159,178,172,0.08)' }}
+                        onClick={() => setLightboxImage(resolved)}>
+                        <img src={resolved} alt={`Aperçu ${i + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                      </div>
+                    );})}
+                  </div>
+                  <p className="font-mono text-xs mt-2" style={{ color: 'rgba(159,178,172,0.6)' }}>
+                    Cliquer sur une image pour l&apos;agrandir
+                  </p>
+                </div>
+              )}
 
               {/* Separateur */}
               <div className="mb-5" style={{ borderTop: '1px solid rgba(93,13,24,0.1)' }} />
@@ -599,7 +690,7 @@ const Projects = () => {
                 ) : (
                   <span className="flex items-center gap-1.5 font-mono text-xs"
                     style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid rgba(159,178,172,0.3)', color: 'rgba(93,13,24,0.35)' }}>
-                    <ExternalIcon /> Demonstration — bientot disponible
+                    <ExternalIcon /> Démonstration — bientot disponible
                   </span>
                 )}
               </div>
@@ -641,6 +732,25 @@ const Projects = () => {
               )}
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Lightbox image */}
+      {lightboxImage && (
+        <div className="fixed inset-0 flex items-center justify-center z-[70] p-6"
+          style={{ background: 'rgba(0,0,0,0.92)' }}
+          onClick={() => setLightboxImage(null)}>
+          <button
+            onClick={() => setLightboxImage(null)}
+            style={{ position: 'absolute', top: 20, right: 28, background: 'none', border: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '1.5rem', cursor: 'pointer', lineHeight: 1 }}>
+            &#x2715;
+          </button>
+          <img
+            src={lightboxImage}
+            alt="Apercu agrandi"
+            style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: '12px', objectFit: 'contain', boxShadow: '0 0 60px rgba(0,0,0,0.6)' }}
+            onClick={e => e.stopPropagation()}
+          />
         </div>
       )}
     </section>
